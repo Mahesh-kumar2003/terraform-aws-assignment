@@ -1,0 +1,7 @@
+aws_region    = "ap-south-1"
+
+project_name  = "terraform-assignment"
+
+instance_type = "t2.micro"
+
+ami_id        = "ami-01a00762f46d584a1"
