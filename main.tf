@@ -102,29 +102,19 @@ resource "aws_security_group" "web_sg" {
 
 }
 
-resource "aws_instance" "web" {
+module "ec2" {
 
-  ami           = var.ami_id
+  source = "./modules/ec2"
+
+  ami_id = var.ami_id
+
   instance_type = var.instance_type
 
   subnet_id = aws_subnet.public.id
 
-  vpc_security_group_ids = [
-    aws_security_group.web_sg.id
-  ]
+  security_group_id = aws_security_group.web_sg.id
 
-  user_data = <<-EOF
-              #!/bin/bash
-              apt update -y
-              apt install apache2 -y
-              echo "<h1>Hello This is Terraform on Ubuntu</h1>" > /var/www/html/index.html
-              systemctl enable apache2
-              systemctl start apache2
-              EOF
-
-  tags = {
-    Name = "${var.project_name}-ec2"
-  }
+  project_name = var.project_name
 }
 
 resource "aws_s3_bucket" "storage" {

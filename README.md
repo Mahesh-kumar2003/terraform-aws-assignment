@@ -156,3 +156,22 @@ ChatGPT was used for:
 * Documentation assistance
 
 All Terraform code was manually reviewed, understood, and tested before submission.
+
+## Bonus Implementation
+
+A reusable EC2 Terraform module was created under `modules/ec2`.
+
+The module accepts:
+
+- AMI ID
+- Instance Type
+- Subnet ID
+- Security Group ID
+- Project Name
+
+and returns:
+
+- Public IP
+- Public DNS
+
+This demonstrates modular and reusable Infrastructure as Code practices.
